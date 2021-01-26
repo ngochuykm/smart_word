@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 // import 'package:mvc_pattern/mvc_pattern.dart';
 
 // import '../controllers/splash_screen_controller.dart';
@@ -8,6 +9,14 @@ class SplashScreen extends StatefulWidget{
   _SplashScreenState createState() => new _SplashScreenState();
 }
 class _SplashScreenState extends State<SplashScreen>{
+  @override
+  void initState() {
+    Timer(Duration(seconds: 20), () {
+      print("homepage");
+    });
+    super.initState();
+  }
+
   @override 
   Widget build(BuildContext context){
     return Scaffold(
