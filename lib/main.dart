@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:global_configuration/global_configuration.dart';
-import 'src/helpers/custom_trace.dart';
+// import 'package:global_configuration/global_configuration.dart';
+// import 'src/helpers/custom_trace.dart';
 import 'route_generator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +26,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/Splash',
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(primaryColor: Colors.red, accentColor: Colors.yellowAccent),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
     );
   }
 
@@ -84,8 +85,11 @@ class _SplashScreenState extends State<SplashScreen>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CircularProgressIndicator(),
-                    Text( "Working Hard"  ,
-                    style:  TextStyle(color: Colors.white ,fontSize: 18.0,fontWeight: FontWeight.bold)
+                    Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: Text( "Working Hard"  ,
+                    style:  TextStyle(color: Colors.white ,fontSize: 18.0,fontWeight: FontWeight.bold,)
+                    )
                     )
                   ]
                 ),
