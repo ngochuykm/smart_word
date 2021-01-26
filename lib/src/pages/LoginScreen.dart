@@ -21,7 +21,10 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            Text("datat1"),
+            Text("222222"),
+          ],
           ),
           alignment: Alignment(-0.5, -0.5),
       ),
