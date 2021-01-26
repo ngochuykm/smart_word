@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // import '../controllers/splash_screen_controller.dart';
 
-class HomeScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  _LoginScreenState createState() => new _LoginScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
@@ -19,7 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: null,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[],
+          ),
+          alignment: Alignment(-0.5, -0.5),
       ),
     ));
   }
