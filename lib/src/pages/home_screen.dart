@@ -3,27 +3,24 @@ import 'package:flutter/material.dart';
 
 // import '../controllers/splash_screen_controller.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => new _HomeScreenState();
 }
-class _HomeScreenState extends State<HomeScreen>{
 
+class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context){
-    return (
-      Scaffold(
-        body: Container(
+  Widget build(BuildContext context) {
+    return (Scaffold(
+      body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bulb.jpg"),
+            image: new ExactAssetImage('assets/img/background.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-         child: null,
+        child: null,
       ),
-      
-      )
-    );
+    ));
   }
 }
