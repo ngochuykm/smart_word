@@ -9,7 +9,9 @@ class RouteGenerator {
       case '/Splash':
         return MaterialPageRoute(builder: (_) => SplashScreen());
       default:
-        return MaterialPageRoute(builder: (_) => Scaffold(body: SafeArea(child: Text('Route Error'))));
+        return MaterialPageRoute(
+            builder: (_) =>
+                Scaffold(body: SafeArea(child: Text('Route Error'))));
     }
   }
 }
