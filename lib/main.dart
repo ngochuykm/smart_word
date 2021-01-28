@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'route_generator.dart';
 import './src/lang/app_localizations.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await GlobalConfiguration().loadFromAsset("configurations");
@@ -23,6 +22,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Locale _locale;
+
+  changeLanguage(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,18 +39,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/Splash',
+      locale: _locale,
       supportedLocales: [
-        Locale('en','US'),
-        Locale('sk','SK'),
+        Locale('en', 'US'),
+        Locale('sk', 'SK'),
       ],
       localizationsDelegates: [
         Applocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
-      localeResolutionCallback: (locale, supportedLocales){
-        for(var supportedLocale in supportedLocales){
-          if(supportedLocale.languageCode==locale.languageCode && supportedLocale.countryCode==locale.countryCode){
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
             return supportedLocale;
           }
         }
