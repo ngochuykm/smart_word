@@ -107,6 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SizedBox(
                 width: 250,
                 child: TextField(
+                  onTap: (){
+                    FocusScope.of(context).unfocus();
+                  },
                   style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
                   cursorColor: Colors.white10,
                   decoration: InputDecoration(
