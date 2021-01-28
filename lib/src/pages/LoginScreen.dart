@@ -1,3 +1,5 @@
+import 'package:circular_check_box/circular_check_box.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 // import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -11,10 +13,32 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _pin = false;
   TextEditingController _pinControlor = new TextEditingController();
+  TextEditingController _userControlor = new TextEditingController();
+  FocusNode focusNode;
+  String hintText = "User Name";
+  bool remenber_me = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    focusNode = FocusNode();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        _userControlor.clear();
+      }
+    });
+    setState(() {});
+  }
+
+  void _onRemenberMeChanged(bool newValue) {
+    setState(() {
+      remenber_me = !remenber_me;
+    });
+  }
+
+  void _login() {
+    Navigator.pushNamed(context, "/home");
+    print("login");
   }
 
   @override
@@ -72,18 +96,59 @@ class _LoginScreenState extends State<LoginScreen> {
                 )
               ],
             ),
-            Padding(padding: EdgeInsets.only(top: 200)),
+            Padding(padding: EdgeInsets.only(top: 160)),
+            Container(
+              child: Center(
+                  child: SizedBox(
+                width: 250,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+                  },
+                  child: TextField(
+                    style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
+                    cursorColor: Colors.white10,
+                    controller: _userControlor,
+                    focusNode: focusNode,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: "User Name",
+                      contentPadding:
+                          EdgeInsets.only(left: 14, bottom: 8, top: 8),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: new BorderSide(color: Colors.white),
+                        borderRadius: new BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: new BorderSide(color: Colors.white),
+                          borderRadius: new BorderRadius.circular(25.7)),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                  ),
+                ),
+              )),
+            ),
+            Padding(padding: EdgeInsets.only(top: 30)),
             Container(
               child: Center(
                   child: SizedBox(
                 width: 250,
                 child: TextField(
+                  obscureText: true,
                   style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
                   cursorColor: Colors.white10,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: "User Name",
+                    hintText: "Password",
                     contentPadding:
                         EdgeInsets.only(left: 14, bottom: 8, top: 8),
                     focusedBorder: OutlineInputBorder(
@@ -101,41 +166,70 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               )),
             ),
-            Padding(padding: EdgeInsets.only(top: 30)),
-            Container(
-              child: Center(
-                  child: SizedBox(
-                width: 250,
-                child: TextField(
-                  onTap: (){
-                    FocusScope.of(context).unfocus();
-                  },
-                  style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
-                  cursorColor: Colors.white10,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: "Password",
-                    contentPadding:
-                        EdgeInsets.only(left: 14, bottom: 8, top: 8),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: new BorderSide(color: Colors.white),
-                      borderRadius: new BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: new BorderSide(color: Colors.white),
-                        borderRadius: new BorderRadius.circular(25.7)),
-                    prefixIcon: Icon(
-                      Icons.verified_user,
-                      color: Colors.blueAccent,
-                    ),
-                  ),
+            Center(
+              child: SizedBox(
+                width: 280,
+                child: Row(
+                  children: [
+                    SizedBox(
+                        width: 180,
+                        child: Row(children: <Widget>[
+                          CircularCheckBox(
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              checkColor: Colors.blueAccent,
+                              activeColor: Colors.yellowAccent,
+                              inactiveColor: Colors.blueAccent,
+                              value: remenber_me,
+                              onChanged: _onRemenberMeChanged),
+                          Text(
+                            "Nhớ mật khẩu",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ])),
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        "Quên mật khẩu",
+                        style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 12,
+                            decoration: TextDecoration.underline),
+                      ),
+                    )
+                  ],
                 ),
-              )),
+              ),
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+            ),
+            Center(
+                child: Container(
+              width: 250,
+              height: 40.0,
+              child: GestureDetector(
+                  onTap: _login,
+                  child: Material(
+                    borderRadius: BorderRadius.circular(20.0),
+                    shadowColor: Colors.greenAccent,
+                    color: Colors.green,
+                    elevation: 7.0,
+                    child: Center(
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  )),
+            ))
           ],
         ),
-        alignment: FractionalOffset(0.5, 0.5),
       ),
     ));
   }
