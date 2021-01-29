@@ -1,6 +1,7 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../elements/login/loginButton.dart';
 // import 'package:mvc_pattern/mvc_pattern.dart';
 
 // import '../controllers/splash_screen_controller.dart';
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new SafeArea(
+    return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Container(
@@ -97,75 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
             Padding(padding: EdgeInsets.only(top: 160)),
-            Container(
-              child: Center(
-                  child: SizedBox(
-                width: 250,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
-                    }
-                  },
-                  child: TextField(
-                    style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
-                    cursorColor: Colors.white10,
-                    controller: _userControlor,
-                    focusNode: focusNode,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "User Name",
-                      contentPadding:
-                          EdgeInsets.only(left: 14, bottom: 8, top: 8),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: new BorderSide(color: Colors.white),
-                        borderRadius: new BorderRadius.circular(25.7),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.white),
-                          borderRadius: new BorderRadius.circular(25.7)),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Colors.blueAccent,
-                      ),
-                    ),
-                  ),
-                ),
-              )),
+            LoginButton(
+              hintText: "USE NAME",
             ),
             Padding(padding: EdgeInsets.only(top: 30)),
-            Container(
-              child: Center(
-                  child: SizedBox(
-                width: 250,
-                child: TextField(
-                  obscureText: true,
-                  style: TextStyle(fontSize: 22.0, color: Colors.blueAccent),
-                  cursorColor: Colors.white10,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: "Password",
-                    contentPadding:
-                        EdgeInsets.only(left: 14, bottom: 8, top: 8),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: new BorderSide(color: Colors.white),
-                      borderRadius: new BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: new BorderSide(color: Colors.white),
-                        borderRadius: new BorderRadius.circular(25.7)),
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: Colors.blueAccent,
-                    ),
-                  ),
-                ),
-              )),
-            ),
+            LoginButton(hintText: "PASSWORD"),
             Center(
               child: SizedBox(
                 width: 280,

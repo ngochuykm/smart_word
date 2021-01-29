@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:global_configuration/global_configuration.dart';
 // import 'src/helpers/custom_trace.dart';
-import 'route_generator.dart';
+import './route_generator.dart';
 import './src/lang/app_localizations.dart';
 
 Future<void> main() async {
@@ -22,14 +22,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale;
-
-  changeLanguage(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -39,10 +31,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/Splash',
-      locale: _locale,
+      debugShowCheckedModeBanner: false,
+      // locale: Locale('kr', 'Kr'),
       supportedLocales: [
         Locale('en', 'US'),
-        Locale('sk', 'SK'),
+        Locale('vi', 'VN'),
+        Locale('kr', 'Kr'),
+        Locale('cn', 'CN'),
       ],
       localizationsDelegates: [
         Applocalizations.delegate,
@@ -61,7 +56,6 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: RouteGenerator.generateRoute,
       theme:
           ThemeData(primaryColor: Colors.red, accentColor: Colors.yellowAccent),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
