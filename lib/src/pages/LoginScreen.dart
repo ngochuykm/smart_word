@@ -37,9 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void _login() {
+  void _home() {
     Navigator.pushNamed(context, "/home");
-    print("login");
+    print("home");
   }
 
   @override
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 250,
               height: 40.0,
               child: GestureDetector(
-                  onTap: _login,
+                  onTap: _home,
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     shadowColor: Colors.greenAccent,

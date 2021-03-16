@@ -1,4 +1,4 @@
-package com.example.smart_work
+package com.example.smart_word
 
 import io.flutter.embedding.android.FlutterActivity
 

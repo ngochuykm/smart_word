@@ -12,9 +12,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 1), () {
       print("homepage");
-      Navigator.of(context).pushReplacementNamed('/login');
+      Navigator.of(context).pushNamed('/login');
     });
     super.initState();
   }
